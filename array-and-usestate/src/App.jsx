@@ -1,6 +1,7 @@
 import { useState } from "react";
 import UpdatingObject from "./components/UpdatingObject";
 import "./App.css";
+import TwoArrays from "./components/TwoArrays";
 
 const friendsArray = [
     {
@@ -44,6 +45,8 @@ const App = () => {
             </ul>
             {/* Updating specific object in an array of objects */}
             <UpdatingObject />
+            {/* Adding a new value in two dimensional array(array in Array) */}
+            <TwoArrays />
         </main>
     );
 };

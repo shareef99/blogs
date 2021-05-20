@@ -33,7 +33,7 @@ const UpdatingObject = () => {
 
     return (
         <ul>
-            {friends.map((friend, index) => (
+            {friends.map((friend) => (
                 <li key={friend.id}>
                     <span>name: {friend.name}</span>{" "}
                     <span>age: {friend.age}</span>
