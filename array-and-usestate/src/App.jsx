@@ -1,4 +1,5 @@
 import { useState } from "react";
+import UpdatingObject from "./components/UpdatingObject";
 import "./App.css";
 
 const friendsArray = [
@@ -32,7 +33,7 @@ const App = () => {
     return (
         <main>
             <h1>Hello Developers</h1>
-            <div>
+            <ul>
                 {friends.map((friend, index) => (
                     <li key={index}>
                         <span>name: {friend.name}</span>{" "}
@@ -40,7 +41,9 @@ const App = () => {
                     </li>
                 ))}
                 <button onClick={handleAddFriend}>Add Friends</button>
-            </div>
+            </ul>
+            {/* Updating specific object in an array of objects */}
+            <UpdatingObject />
         </main>
     );
 };
