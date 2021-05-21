@@ -66,7 +66,9 @@ const UpdatingObjectInTwoArray = () => {
                     </ul>
                 </li>
             ))}
-            <button onClick={handleFirstFriendHobby}>Add Hobby to mandy</button>
+            <button onClick={handleFirstFriendHobby}>
+                Change Second Hobby of handy
+            </button>
         </ul>
     );
 };
