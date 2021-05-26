@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# Hello Developers 👋
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I would like to share something I recently got to know, so the background is, in my project I was using **useState** value right after updating it and I was getting previous value(not updated value) and to my surprise I found out that **useState hook is asynchronous**
 
-## Available Scripts
+## what it is?
 
-In the project directory, you can run:
+Basically the thing is you don't get update value right after updating _state_.
 
-### `npm start`
+## What is the work around/solution?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+We can use **useEffect** hook, and add our state in the dependence array, and we will always get the updated value.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Show me the code 🤩🤩🤩
 
-### `npm test`
+```jsx
+import { useState } from "react";
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+export default function CountWithoutEffect() {
+    const [count, setCount] = useState(0);
+    const [doubleCount, setDoubleCount] = useState(count * 2);
+    const handleCount = () => {
+        setCount(count + 1);
+        setDoubleCount(count * 2); // This will not use the latest value of count
+    };
+    return (
+        <div className="App">
+            <div>
+                <h2>Count Without useEffect</h2>
+                <h3>Count: {count}</h3>
+                <h3>Count * 2: {doubleCount}</h3>
+                <button onClick={handleCount}>Count++</button>
+            </div>
+        </div>
+    );
+}
+```
 
-### `npm run build`
+-   Here we have very simple and stright forward component.
+-   On button click we are updating two states and one state is dependent on other state.
+-   The _doubleCount_ will be one step behind _count_.
+-   Check out the [Live Demo](https://use-state-is-async.vercel.app)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Solving this issue 🧐🧐🧐
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This can be easily solve with _useEffect_ hook, let's see the code
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```jsx
+import { useState, useEffect } from "react";
 
-### `npm run eject`
+export default function CountWithEffect() {
+    const [count, setCount] = useState(0);
+    const [doubleCount, setDoubleCount] = useState(count * 2);
+    const handleCount = () => {
+        setCount(count + 1);
+    };
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    useEffect(() => {
+        setDoubleCount(count * 2); // This will always use latest value of count
+    }, [count]);
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    return (
+        <div>
+            <h2>Count with useEffect</h2>
+            <h3>Count: {count}</h3>
+            <h3>Count * 2: {doubleCount}</h3>
+            <button onClick={handleCount}>Count++</button>
+        </div>
+    );
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+-   Here, when ever count changes we are updating **doubleCount**
+-   Check out the [live Demo](https://use-state-is-async.vercel.app)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Closing here 👋👋👋
 
-## Learn More
+> This is **Shareef**.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> [Live demo](https://use-state-is-async.vercel.app/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> [Read it on Dev.to](https://dev.to/shareef/react-usestate-hook-is-asynchronous-1hia)
