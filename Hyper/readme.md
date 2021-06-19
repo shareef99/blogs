@@ -16,4 +16,4 @@ I am a web developer and I am amazed at how they made such a powerful terminal.
 
 Okay enough of talking, let's see how to config the **hyper** terminal.
 
-**[Read full blog]()**
+**[Read full blog](https://dev.to/shareef/make-your-terminal-beautiful-hyper-3jbm)**
